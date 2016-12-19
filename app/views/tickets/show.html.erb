@@ -12,8 +12,8 @@
 
 <p>
   <strong>Project:</strong>
-  <%= @ticket.project %>
+  <%= @ticket.project.name %>
 </p>
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+<%= link_to 'Edit', edit_project_ticket_path(@project, @ticket) %> |
+<%= link_to 'Back', project_path(@project) %>
