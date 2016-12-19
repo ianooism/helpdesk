@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'Ticket was successfully updated.'
+      redirect_to project_ticket_url(@project, @ticket), notice: 'Ticket was successfully updated.'
     else
       render :edit
     end
