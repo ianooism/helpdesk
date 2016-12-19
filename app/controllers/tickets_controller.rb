@@ -32,7 +32,7 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
+    redirect_to project_url(@project), notice: 'Ticket was successfully destroyed.'
   end
 
   private
