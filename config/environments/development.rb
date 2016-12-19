@@ -30,6 +30,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+  
+  # Send email to /tmp/mails
+  config.action_mailer.delivery_method = :file
+  
+  # Set host for generating url in email
+  config.action_mailer.default_url_options = { host: "localhost", port: "3000" }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
