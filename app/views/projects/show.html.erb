@@ -11,6 +11,9 @@
 <% if @tickets.any? %>
   <%= render 'ticket_index', project: @project, tickets: @tickets %>
 <% end %>
+<br>
+<%= link_to 'New Ticket', new_project_ticket_path(@project) %>
+<br>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
