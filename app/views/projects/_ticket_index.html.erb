@@ -4,8 +4,9 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Author</th>
       <th>Description</th>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -13,6 +14,7 @@
     <% tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.name %></td>
+        <td><%= ticket.author.email %></td>
         <td><%= ticket.description %></td>
         <td><%= link_to 'Show', project_ticket_path(project, ticket) %></td>
         <td><%= link_to 'Edit', edit_project_ticket_path(project, ticket) %></td>
