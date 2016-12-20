@@ -1,25 +1,29 @@
 <h1>Tickets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Author</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= link_to 'New Ticket', new_project_ticket_path(project) %>
 
-  <tbody>
-    <% tickets.each do |ticket| %>
+<% if tickets.any? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= ticket.name %></td>
-        <td><%= ticket.author.email %></td>
-        <td><%= ticket.description %></td>
-        <td><%= link_to 'Show', project_ticket_path(project, ticket) %></td>
-        <td><%= link_to 'Edit', edit_project_ticket_path(project, ticket) %></td>
-        <td><%= link_to 'Destroy', project_ticket_path(project, ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.name %></td>
+          <td><%= ticket.author.email %></td>
+          <td><%= ticket.description %></td>
+          <td><%= link_to 'Show', project_ticket_path(project, ticket) %></td>
+          <td><%= link_to 'Edit', edit_project_ticket_path(project, ticket) %></td>
+          <td><%= link_to 'Destroy', project_ticket_path(project, ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
