@@ -35,7 +35,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :file
   
   # Set host for generating url in email
-  config.action_mailer.default_url_options = { host: "localhost", port: "3000" }
+  config.action_mailer.default_url_options = { host: ENV['C9_HOSTNAME'], port: ENV['C9_PORT'] }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
