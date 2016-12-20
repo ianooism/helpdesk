@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1>Ticket</h1>
 
 <p>
   <strong>Name:</strong>
   <%= @ticket.name %>
 </p>
-
+<p>
+  <strong>Author:</strong>
+  <%= @ticket.author.email %>
+</p>
 <p>
   <strong>Description:</strong>
   <%= @ticket.description %>
 </p>
-
 <p>
   <strong>Project:</strong>
   <%= @ticket.project.name %>
 </p>
 
-<%= link_to 'Edit', edit_project_ticket_path(@project, @ticket) %> |
+<% if user_signed_in? && @ticket.owner?(current_user) %>
+  <%= link_to 'Edit', edit_project_ticket_path(@project, @ticket) %> |
+<% end %>
 <%= link_to 'Back', project_path(@project) %>

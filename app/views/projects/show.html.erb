@@ -1,18 +1,17 @@
-<p id="notice"><%= notice %></p>
+<h1>Project</h1>
 
 <p>
   <strong>Name:</strong>
   <%= @project.name %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
 
-<% if @tickets.any? %>
-  <%= render 'ticket_index', project: @project, tickets: @tickets %>
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_project_path(@project) %> |
 <% end %>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<%= render 'ticket_index', project: @project, tickets: @tickets %>

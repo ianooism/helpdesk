@@ -1,6 +1,9 @@
 class TicketsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
+  
   before_action :set_project
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :block_non_owner, only: [:edit, :update, :destroy]
 
   def show
   end
@@ -14,6 +17,7 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = @project.tickets.build(ticket_params)
+    @ticket.author = current_user
 
     if @ticket.save
       redirect_to project_ticket_url(@project, @ticket), notice: 'Ticket was successfully created.'
@@ -42,6 +46,12 @@ class TicketsController < ApplicationController
     
     def set_ticket
       @ticket = @project.tickets.find(params[:id])
+    end
+    
+    def block_non_owner
+      unless @ticket.owner?(current_user)
+        redirect_to root_url, alert: "User action was not permitted."
+      end
     end
 
     def ticket_params
