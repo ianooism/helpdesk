@@ -3,6 +3,7 @@ class TicketsController < ApplicationController
   
   before_action :set_project
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :block_non_owner, only: [:edit, :update, :destroy]
 
   def show
   end
@@ -45,6 +46,12 @@ class TicketsController < ApplicationController
     
     def set_ticket
       @ticket = @project.tickets.find(params[:id])
+    end
+    
+    def block_non_owner
+      unless @ticket.owner?(current_user)
+        redirect_to root_url, alert: "User action was not permitted."
+      end
     end
 
     def ticket_params

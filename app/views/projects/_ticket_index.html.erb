@@ -20,9 +20,10 @@
           <td><%= ticket.author.email %></td>
           <td><%= ticket.description %></td>
           <td><%= link_to 'Show', project_ticket_path(project, ticket) %></td>
-          <% if user_signed_in? %>
+          <% if user_signed_in? && ticket.owner?(current_user) %>
             <td><%= link_to 'Edit', edit_project_ticket_path(project, ticket) %></td>
-            <td><%= link_to 'Destroy', project_ticket_path(project, ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Destroy', project_ticket_path(project, ticket),
+                  method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
       <% end %>
