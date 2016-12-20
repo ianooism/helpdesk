@@ -1,6 +1,8 @@
 <h1>Tickets</h1>
 
-<%= link_to 'New Ticket', new_project_ticket_path(project) %>
+<% if user_signed_in? %>
+  <%= link_to 'New Ticket', new_project_ticket_path(project) %>
+<% end %>
 
 <% if tickets.any? %>
   <table>
@@ -20,8 +22,10 @@
           <td><%= ticket.author.email %></td>
           <td><%= ticket.description %></td>
           <td><%= link_to 'Show', project_ticket_path(project, ticket) %></td>
-          <td><%= link_to 'Edit', edit_project_ticket_path(project, ticket) %></td>
-          <td><%= link_to 'Destroy', project_ticket_path(project, ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if user_signed_in? %>
+            <td><%= link_to 'Edit', edit_project_ticket_path(project, ticket) %></td>
+            <td><%= link_to 'Destroy', project_ticket_path(project, ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
