@@ -1,8 +1,6 @@
 <h1>Tickets</h1>
 
-<% if user_signed_in? %>
-  <%= link_to 'New Ticket', new_project_ticket_path(project) %>
-<% end %>
+<%= link_to 'New Ticket', new_project_ticket_path(project) %>
 
 <% if tickets.any? %>
   <table>
